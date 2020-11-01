@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 
 public class SanityTest {
 
@@ -16,7 +17,7 @@ public class SanityTest {
     //open browser
     System.setProperty("webdriver.chrome.driver","src/test/resources/drivers/chromedriver.exe");
     driver = new ChromeDriver();
-    driver.get("http://cognit.mynetgear.com:3000/");
+    driver.get("http://automationpractice.com/index.php");
 
   }
 
@@ -27,8 +28,8 @@ public class SanityTest {
   //}
 
   @Test
-  public void LoadPage() {
-    driver.findElement(By.id("")).getText();
+  public void AddEmployee() {
+
 
   }
 
