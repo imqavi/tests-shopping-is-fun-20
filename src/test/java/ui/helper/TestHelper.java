@@ -15,7 +15,6 @@ public class TestHelper {
         System.setProperty("webdriver.chrome.driver","src/test/resources/drivers/chromedriver.exe");
         driver = new ChromeDriver();
         driver.get("http://automationpractice.com/index.php");
-
     }
 
     @AfterClass
