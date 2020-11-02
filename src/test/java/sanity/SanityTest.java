@@ -1,36 +1,28 @@
 package sanity;
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
+import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.Select;
 
 public class SanityTest {
+    public WebDriver driver;
 
-  private static WebDriver driver;
+    @Before
+    public void setupTest() {
+        System.setProperty("webdriver.chrome.driver","src/test/resources/drivers/chromedriver.exe");
+        driver = new ChromeDriver();
+        driver.get("http://automationpractice.com/index.php");
 
-  @BeforeClass
-    public static void setDriver() {
-    //open browser
-    System.setProperty("webdriver.chrome.driver","src/test/resources/drivers/chromedriver.exe");
-    driver = new ChromeDriver();
-    driver.get("http://automationpractice.com/index.php");
+    }
+    @Test
+    public void ShoppingLogDashboard() {
+        String expectedHeader = "Contact us";
+        String actualHeader = driver.findElement(By.cssSelector("[title='Contact Us']")).getText();
+        Assert.assertEquals("Dashboard header title doesn't match",expectedHeader,actualHeader);
 
-  }
-
-  //@AfterClass
-  //public static void teardown() {
-    //driver.close();
-
-  //}
-
-  @Test
-  public void AddEmployee() {
-
-
-  }
+    }
 
 }
