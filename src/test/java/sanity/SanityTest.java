@@ -1,28 +1,32 @@
 package sanity;
 
+import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import ui.helper.TestHelper;
 
-public class SanityTest {
-    public WebDriver driver;
+public class SanityTest extends TestHelper {
+    public static WebDriver driver;
 
-    @Before
-    public void setupTest() {
-        System.setProperty("webdriver.chrome.driver","src/test/resources/drivers/chromedriver.exe");
-        driver = new ChromeDriver();
-        driver.get("http://automationpractice.com/index.php");
-
-    }
     @Test
-    public void ShoppingLogDashboard() {
-        String expectedHeader = "Contact us";
-        String actualHeader = driver.findElement(By.cssSelector("[title='Contact Us']")).getText();
-        Assert.assertEquals("Dashboard header title doesn't match",expectedHeader,actualHeader);
+    public void clickOnSigninLink() {
+        driver.findElement(By.cssSelector("[title='Log in to your customer account']")).click();
+        driver.findElement(By.id("email")).clear();
+        driver.findElement(By.id("email")).sendKeys("shoppingtest@gmail.com");
+        driver.findElement(By.id("passwd")).clear();
+        driver.findElement(By.id("passwd")).sendKeys("shopping123");
+        driver.findElement(By.id("SubmitLogin")).click();
 
+        //Sign Out
+        driver.findElement(By.cssSelector("[title='Log me out']")).click();
+
+        //Verify My Account links
+        driver.findElement(By.cssSelector("[title='Orders']")).click();
     }
 
 }
+
