@@ -1,26 +1,26 @@
 package ui.helper;
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.concurrent.TimeUnit;
+
 public class TestHelper {
+    public static WebDriver driver;
 
-    private static WebDriver driver;
-
-    @BeforeClass
-    public static void setDriver() {
-        //open browser
+    @Before
+    public void setupTest() {
         System.setProperty("webdriver.chrome.driver","src/test/resources/drivers/chromedriver.exe");
         driver = new ChromeDriver();
         driver.get("http://automationpractice.com/index.php");
-    }
-
-    @AfterClass
-    public static void teardown() {
-    driver.close();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(20,TimeUnit.SECONDS);
 
     }
 
+    /*@AfterClass
+    public static void teardownDriver() {
+        driver.quit();
+    }*/
 }
