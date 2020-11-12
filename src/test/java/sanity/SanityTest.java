@@ -10,7 +10,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import ui.helper.TestHelper;
 
 public class SanityTest extends TestHelper {
-    public static WebDriver driver;
 
     @Test
     public void clickOnSigninLink() {
@@ -21,11 +20,22 @@ public class SanityTest extends TestHelper {
         driver.findElement(By.id("passwd")).sendKeys("shopping123");
         driver.findElement(By.id("SubmitLogin")).click();
 
-        //Sign Out
-        driver.findElement(By.cssSelector("[title='Log me out']")).click();
+
+        //Verify My Account links
+        //driver.findElement(By.cssSelector("[title='Orders']")).click();
 
         //Verify My Account links
         driver.findElement(By.cssSelector("[title='Orders']")).click();
+        driver.findElement(By.xpath("/html/body/div/div[2]/div/div[3]/div/ul/li[1]/a")).click();
+        driver.findElement(By.cssSelector("[title='Credit slips']")).click();
+        driver.findElement(By.xpath("/html/body/div/div[2]/div/div[3]/div/ul/li[1]/a")).click();
+        driver.findElement(By.cssSelector("[title='Addresses']")).click();
+        driver.findElement(By.xpath("/html/body/div/div[2]/div/div[3]/div/ul/li[1]/a")).click();
+        driver.findElement(By.cssSelector("[title='Information']")).click();
+        driver.findElement(By.xpath("/html/body/div/div[2]/div/div[3]/div/ul/li[1]/a")).click();
+
+        //Sign Out
+        //driver.findElement(By.cssSelector("[title='Log me out']")).click();
     }
 
 }
