@@ -1,42 +1,26 @@
 package sanity;
 
-import org.junit.AfterClass;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import ui.helper.TestHelper;
+
+import javax.swing.*;
 
 public class SanityTest extends TestHelper {
 
     @Test
-    public void clickOnSigninLink() {
-        driver.findElement(By.cssSelector("[title='Log in to your customer account']")).click();
-        driver.findElement(By.id("email")).clear();
-        driver.findElement(By.id("email")).sendKeys("shoppingtest@gmail.com");
-        driver.findElement(By.id("passwd")).clear();
-        driver.findElement(By.id("passwd")).sendKeys("shopping123");
-        driver.findElement(By.id("SubmitLogin")).click();
+    public void VerifyWomenEveningDressLink() {
+        Actions action = new Actions(driver);
+        action.moveToElement(driver.findElement(By.linkText("WOMEN"))).build().perform();
+        driver.findElement(By.linkText("Evening Dresses")).click();
+        String actualTitle = driver.getTitle();
+        String expectedTitle = "Evening Dresses - My Store";
+        System.out.println(driver.getTitle());
+        Assert.assertEquals("title of the does not match", expectedTitle, actualTitle);
 
 
-        //Verify My Account links
-        //driver.findElement(By.cssSelector("[title='Orders']")).click();
 
-        //Verify My Account links
-        driver.findElement(By.cssSelector("[title='Orders']")).click();
-        driver.findElement(By.xpath("/html/body/div/div[2]/div/div[3]/div/ul/li[1]/a")).click();
-        driver.findElement(By.cssSelector("[title='Credit slips']")).click();
-        driver.findElement(By.xpath("/html/body/div/div[2]/div/div[3]/div/ul/li[1]/a")).click();
-        driver.findElement(By.cssSelector("[title='Addresses']")).click();
-        driver.findElement(By.xpath("/html/body/div/div[2]/div/div[3]/div/ul/li[1]/a")).click();
-        driver.findElement(By.cssSelector("[title='Information']")).click();
-        driver.findElement(By.xpath("/html/body/div/div[2]/div/div[3]/div/ul/li[1]/a")).click();
-
-        //Sign Out
-        //driver.findElement(By.cssSelector("[title='Log me out']")).click();
     }
-
 }
-
